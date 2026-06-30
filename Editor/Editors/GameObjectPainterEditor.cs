@@ -28,6 +28,7 @@ namespace UrbanFox.GameObjectPainter.Editor
         private SerializedProperty m_brushRadius;
         private SerializedProperty m_brushDensity;
         private SerializedProperty m_brushHeight;
+        private SerializedProperty m_orientToSurface;
         private SerializedProperty m_maxRandomRotateAngle;
         private SerializedProperty m_maxSlopeAngle;
         private SerializedProperty m_offsetRotateAngle;
@@ -76,6 +77,7 @@ namespace UrbanFox.GameObjectPainter.Editor
             m_brushRadius = serializedObject.FindProperty(nameof(m_brushRadius));
             m_brushDensity = serializedObject.FindProperty(nameof(m_brushDensity));
             m_brushHeight = serializedObject.FindProperty(nameof(m_brushHeight));
+            m_orientToSurface = serializedObject.FindProperty(nameof(m_orientToSurface));
             m_maxRandomRotateAngle = serializedObject.FindProperty(nameof(m_maxRandomRotateAngle));
             m_maxSlopeAngle = serializedObject.FindProperty(nameof(m_maxSlopeAngle));
             m_offsetRotateAngle = serializedObject.FindProperty(nameof(m_offsetRotateAngle));
@@ -486,7 +488,9 @@ namespace UrbanFox.GameObjectPainter.Editor
                             continue;
                         }
 
-                        instance.transform.SetPositionAndRotation(hit.point, Quaternion.LookRotation(hit.normal.GetPerpendicularVector(), hit.normal));
+                        var rotation = m_orientToSurface.boolValue ? Quaternion.LookRotation(hit.normal.GetPerpendicularVector(), hit.normal) : Quaternion.identity;
+                        
+                        instance.transform.SetPositionAndRotation(hit.point, rotation);
                         instance.transform.localRotation *= Quaternion.AngleAxis(instanceData.LocalYRotationAngle, Vector3.up);
                         instance.transform.localScale = instanceData.LocalScale * Vector3.one;
                         instance.SetActive(true);

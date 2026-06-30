@@ -61,7 +61,10 @@ namespace UrbanFox.GameObjectPainter
         [SerializeField, ShowIfNot(nameof(m_brushShape), BrushShape.Sphere), Min(0)]
         private float m_brushHeight = 1;
 
-        [Header("Angle Settings"), SerializeField, Range(0f, 360f)]
+        [Header("Angle Settings"), SerializeField]
+        private bool m_orientToSurface = true;
+        
+        [SerializeField, Range(0f, 360f)]
         private float m_maxRandomRotateAngle = 360;
 
         [SerializeField, Range(0f, 360f)]

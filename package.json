@@ -1,11 +1,11 @@
 {
-  "name": "com.urbanfox.gameobjectpainter",
+  "name": "com.jrocker.gameobjectpainter",
   "version": "1.0.0",
   "displayName": "GameObject Painter",
-  "documentationUrl": "https://github.com/huchi57/objectpainter",
+  "documentationUrl": "https://github.com/johnrossporter/objectpainter",
   "author": {
-    "name": "Hu Chi",
-    "email": "huchi.hello@gmail.com"
+    "name": "John Porter",
+    "email": "porter.johnross@gmail.com"
   },
   "description": "A Unity Editor tool for painting pre-defined GameObject sets."
 }
